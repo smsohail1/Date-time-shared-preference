@@ -10,9 +10,41 @@ import UIKit
 
 class ViewController: UIViewController {
 
+   // @IBOutlet weak var labe: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy HH:mm:ss";
+        let result = formatter.string(from: date)
+        print("\(result)");
+        
+        let preferences_write = UserDefaults.standard
+        
+        let currentLevel = "sohail"
+        let currentLevelKey = "currentLevel"
+        preferences_write.set(currentLevel, forKey: currentLevelKey)
+        
+        preferences_write.synchronize()
+        
+        
+        let preferences = UserDefaults.standard
+        
+       // let currentLevelKey = "currentLevel"
+        if preferences.object(forKey: currentLevelKey) == nil {
+            //  Doesn't exist        
+            print("null")
+            
+        } else {
+            let currentLevel1 = preferences.string(forKey: currentLevelKey)
+            print(currentLevel1 ?? "sss")
+        }
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,5 +53,6 @@ class ViewController: UIViewController {
     }
 
 
+   
 }
 
